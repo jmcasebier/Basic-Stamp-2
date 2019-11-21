@@ -1,0 +1,78 @@
+' What's a Microcontroller - ReactionTimer.bs2
+' Test reaction time with a pushbutton and a bicolor LED
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+PAUSE 1000
+
+' Declare timecounter variable
+timecounter VAR Word
+timecounterA VAR Word
+timecounterB VAR Word
+randnum VAR Word
+waittime VAR Word
+
+DEBUG "Both players must press and hold the pushbuttons", CR,
+      "to make the light turn red", CR, CR,
+      "When the light turns green, each player should let", CR,
+      "go as fast as they can", CR, CR
+
+' Start main loop
+DO
+  ' Do nothing until the button is pressed
+  DO
+  LOOP UNTIL IN3 = 1 AND IN4 = 1
+  ' Turn red once button is pressed
+  HIGH 14
+  LOW 15
+  ' Wait for specified amount of time
+  RANDOM randnum
+  waittime = (randnum // 5 + 1) * 1000
+  PAUSE waittime
+  ' Turn green to prompt release
+  LOW 14
+  HIGH 15
+  ' Reset timecounter
+  timecounter = 0
+  ' Increment timecounter until button release
+  DO
+    PAUSE 1
+    timecounter = timecounter + 1
+    IF IN3 = 1 THEN
+      timecounterA = timecounter
+    ENDIF
+    IF IN4 = 1 THEN
+      timecounterB = timecounter
+    ENDIF
+
+  LOOP UNTIL IN3 = 0 OR IN4 = 0
+
+  ' Turn light off
+  LOW 15
+  ' Check if button was released before light turned green
+  IF timecounterA <= 2 OR timecounterB <= 2 THEN
+    DEBUG "Both players must wait until the light turns", CR,
+          "green before releasing the button", CR, CR
+  ' Display results to Debug Terminal
+  ELSE
+    timecounterA = timecounterA */ 548
+    timecounterB = timecounterB */ 548
+    DEBUG "Player 1's reaction time was ", DEC timecounterA,
+          "ms", CR
+    DEBUG "Player 2's reaction time was ", DEC timecounterB,
+          "ms", CR
+    IF timecounterA < timecounterB THEN
+      DEBUG "Player 1 wins!", CR, CR
+    ELSEIF timecounterB < timecounterA THEN
+      DEBUG "Player 2 wins!", CR, CR
+    ELSE
+      DEBUG "It's a tie!", CR, CR
+    ENDIF
+  ENDIF
+  ' Display instructions to play again
+  DEBUG "To play again, both players must press and hold", CR,
+        "the pushbuttons", CR, CR
+' Restart main loop
+LOOP
+

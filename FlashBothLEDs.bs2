@@ -1,0 +1,16 @@
+' What's a Microcontroller - FlashBothLEDs.bs2
+' Turn LEDs connected to P14 and P15 on and off
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Program running"
+
+DO
+  LOW 15
+  HIGH 14
+  PAUSE 500
+  LOW 14
+  HIGH 15
+  PAUSE 500
+LOOP

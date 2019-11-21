@@ -1,0 +1,17 @@
+' What's a Microcontroller - LEDOnOff.bs2
+' Turn an LED on and off, repeat one time per second indefinitely
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+
+DO
+  HIGH 14
+  PAUSE 250
+  LOW 14
+  PAUSE 250
+  HIGH 14
+  PAUSE 250
+  LOW 14
+  PAUSE 1250
+LOOP

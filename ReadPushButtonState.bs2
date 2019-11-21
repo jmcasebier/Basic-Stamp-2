@@ -1,0 +1,13 @@
+' What's a Microcontroller - ReadPushButtonState.bs2
+' Check and send pushbutton state to Debug Terminal every 1/4 second
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+PAUSE 1000
+DEBUG "Program running", CR
+
+DO
+  DEBUG ? IN3
+  PAUSE 250
+LOOP

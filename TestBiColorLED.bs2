@@ -1,0 +1,21 @@
+' What's a Microcontroller - TestBiColorLED.bs2
+' Turn bicolor LED green, then red, then off in a loop
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+PAUSE 1000
+DEBUG "Program running", CR
+                 
+
+DO
+    ' Green
+    HIGH 15
+    LOW 14
+    PAUSE 250
+
+    ' Red
+    LOW 15
+    HIGH 14
+    PAUSE 250
+LOOP

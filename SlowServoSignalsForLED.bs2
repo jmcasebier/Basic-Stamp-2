@@ -1,0 +1,14 @@
+' What's a Microcontroller - ServoCenter.bs2
+' Set and hold servo position to center
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+counter VAR Byte
+
+DEBUG "Program running..."
+
+FOR counter = 1 TO 15
+  PULSOUT 14, 7500
+  PAUSE 200
+NEXT

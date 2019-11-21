@@ -1,0 +1,31 @@
+' What's a Microcontroller - ServoThreePositions.bs2
+' Rotate servo between 3 different positions
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+counter VAR Byte
+
+DEBUG "Program running..."
+
+DO
+  FOR counter = 1 TO 30
+    PULSOUT 14, 350
+    PAUSE 20
+  NEXT
+
+  FOR counter = 1 TO 30
+    PULSOUT 14, 750
+    PAUSE 20
+  NEXT
+
+  FOR counter = 1 TO 30
+    PULSOUT 14, 1150
+    PAUSE 20
+  NEXT
+
+  FOR counter = 1 TO 30
+    PULSOUT 14, 750
+    PAUSE 20
+  NEXT
+LOOP
