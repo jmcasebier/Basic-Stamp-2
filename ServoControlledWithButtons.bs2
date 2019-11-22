@@ -1,0 +1,33 @@
+' What's a Microcontroller - ServoControlledWithButtons.bs2
+' Rotate servo bidirectionally based on pushbutton input
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+duration VAR Word
+duration = 750
+PAUSE 1000
+
+DO
+  IF IN3 = 1 AND IN4 = 0 THEN
+    IF duration > 350 THEN
+      duration = duration - 30
+    ENDIF
+  ENDIF
+
+  IF IN4 = 1 AND IN3 = 0 THEN
+    IF duration < 1150 THEN
+      duration = duration + 30
+    ENDIF
+  ENDIF
+
+  IF IN3 = 0 AND IN4 = 0 THEN
+    duration = 750
+  ENDIF
+
+  PULSOUT 14, duration
+  PAUSE 10
+
+  DEBUG HOME, DEC4 duration, " = duration"
+LOOP
+

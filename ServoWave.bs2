@@ -1,0 +1,21 @@
+' What's a Microcontroller - ServoWave.bs2
+' Rotate the servo back and forth between near ~0 and ~180
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+counter VAR Byte
+
+DEBUG "Program running..."
+
+DO
+  FOR counter = 1 TO 44
+    PULSOUT 14, 325
+    PAUSE 20
+  NEXT
+
+  FOR counter = 1 TO 44
+    PULSOUT 14, 1175
+    PAUSE 20
+  NEXT
+LOOP

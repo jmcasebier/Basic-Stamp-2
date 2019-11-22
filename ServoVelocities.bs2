@@ -1,0 +1,30 @@
+' What's a Microcontroller - ServoVelocities.bs2
+' Rotate servo counterclockwise slowly, then clockwise rapidly
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+counter VAR Word
+
+PAUSE 1000
+
+DO
+  DEBUG "Pulse width increment by 8", CR
+
+  FOR counter = 500 TO 1000 STEP 8
+    PULSOUT 14, counter
+    PAUSE 7
+    DEBUG DEC5 counter, CR, crsrup
+  NEXT
+
+  DEBUG "Pulse width increment by 20", CR
+
+  FOR counter = 1000 TO 500 STEP 20
+    PULSOUT 14, counter
+    PAUSE 7
+    DEBUG DEC5 counter, CR, crsrup
+  NEXT
+
+  DEBUG CR, "Repeat", cr
+LOOP
+
